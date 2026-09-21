@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOP UP PAKISTAN - Final Locked</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f5f5f5;max-width:420px;margin:auto;border:1px solid #ddd;min-height:100vh}
+  .screen{display:none;min-height:100vh;background:white}
+  .screen.active{display:block}
+  .green{background:#0A7E3D;color:white}
+  .header{padding:15px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+  .bag{width:45px;height:45px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#0A7E3D;font-weight:bold;font-size:22px;position:relative}
+  .bag::after{content:'↗';position:absolute;top:-2px;right:2px;color:#0A7E3D;font-size:18px;font-weight:bold}
+  .logo-text{font-weight:bold;font-size:18px;line-height:1.1}
+  #splash{background:#0A7E3D;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white}
+  #splash .big-bag{width:100px;height:100px;background:white;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:20px;position:relative}
+  #splash .big-bag::after{content:'↗';position:absolute;top:5px;right:10px;color:#0A7E3D;font-size:28px}
+  .login-box{padding:30px}
+  .input{width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:8px}
+  .btn{width:100%;padding:12px;background:#0A7E3D;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px}
+  .search{margin:10px;padding:10px;background:#f1f1f1;border-radius:20px;text-align:center;color:#888}
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:15px}
+  .cat-item{text-align:center;cursor:pointer}
+  .cat-icon{width:50px;height:50px;background:#0A7E3D;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;margin:auto;font-size:22px}
+  .cat-name{font-size:11px;margin-top:5px}
+  .ad-card{border:1px solid #eee;margin:10px;border-radius:10px;overflow:hidden;cursor:pointer}
+  .list-item{padding:16px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;cursor:pointer}
+  .detail-img{width:100%;height:220px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:60px}
+  .detail-info{padding:15px}
+  .bottom-nav{position:fixed;bottom:0;width:100%;max-width:420px;display:flex;justify-content:space-around;background:white;border-top:1px solid #eee;padding:10px 0}
+</style>
+</head>
+<body>
+<div id="splash" class="screen active">
+  <div class="big-bag">👜</div>
+  <div style="font-weight:bold;font-size:28px;text-align:center">SHOP UP<br>PAKISTAN</div>
+</div>
+<div id="login" class="screen">
+  <div class="header green"><div class="logo"><div class="bag">👜</div><div class="logo-text">SHOP UP<br>PAKISTAN</div></div></div>
+  <div class="login-box"><h2>Welcome Back!</h2><input class="input" placeholder="Email"><input class="input" type="password" placeholder="Password"><button class="btn" onclick="showScreen('dashboard')">Login</button></div>
+</div>
+<div id="dashboard" class="screen">
+  <div class="header green"><div class="logo" onclick="tapLogo()"><div class="bag">👜</div><div class="logo-text">SHOP UP<br>PAKISTAN</div></div><div>♡ 🔔</div></div>
+  <div style="padding:10px"><div class="search">🔍 Search...</div></div>
+  <div style="padding:0 15px;font-weight:bold">Categories - Grocery Included ✅</div>
+  <div class="cat-grid" id="catGrid"></div>
+  <div style="display:flex;gap:10px;padding:10px">
+    <div class="ad-card" style="flex:1" onclick="showScreen('adDetail')"><div style="background:#ddd;height:80px;display:flex;align-items:center;justify-content:center">📱</div><div style="padding:5px;font-size:12px">iPhone 14 Pro<br><b style="color:#0A7E3D">Rs 185,000</b></div></div>
+    <div class="ad-card" style="flex:1" onclick="showScreen('adDetail')"><div style="background:#ddd;height:80px;display:flex;align-items:center;justify-content:center">🏠</div><div style="padding:5px;font-size:12px">House for Sale<br><b style="color:#0A7E3D">Rs 85 Lac</b></div></div>
+  </div>
+  <div style="height:60px"></div>
+  <div class="bottom-nav"><div onclick="showScreen('dashboard')">🏠 Home</div><div onclick="showScreen('chats')">💬 Chat</div><div onclick="showScreen('profile')">👤 Profile</div></div>
+</div>
+<div id="categories" class="screen"><div class="header green"><div onclick="showScreen('dashboard')">← Categories</div></div><div id="catList"></div></div>
+<div id="adsList" class="screen"><div class="header green"><div onclick="showScreen('categories')">← <span id="adsTitle">Mobiles</span></div></div><div class="list-item" onclick="showScreen('adDetail')"><div>📱 iPhone 14 Pro<br><b>Rs 185,000</b></div><div>›</div></div></div>
+<div id="adDetail" class="screen"><div class="header green"><div onclick="showScreen('adsList')">← Back</div></div><div class="detail-img">📱</div><div class="detail-info"><h3>iPhone 14 Pro</h3><h2 style="color:#0A7E3D">Rs 185,000</h2><button class="btn" onclick="showScreen('chats')">Chat with Seller</button></div></div>
+<div id="chats" class="screen"><div class="header green"><div>Chats</div></div><div class="list-item"><b>Ahmed - Is price negotiable?</b></div><div class="bottom-nav"><div onclick="showScreen('dashboard')">🏠 Home</div><div onclick="showScreen('chats')">💬 Chat</div><div onclick="showScreen('profile')">👤 Profile</div></div></div>
+<div id="profile" class="screen"><div class="header green"><div>Profile</div></div><div style="padding:15px"><b>Ali Khan</b></div><div class="logo" onclick="tapLogo()" style="padding:15px;justify-content:center"><div class="bag" style="border:2px solid #0A7E3D">👜</div><div class="logo-text" style="color:#0A7E3D">SHOP UP<br>PAKISTAN</div></div><div class="bottom-nav"><div onclick="showScreen('dashboard')">🏠 Home</div><div onclick="showScreen('chats')">💬 Chat</div><div onclick="showScreen('profile')">👤 Profile</div></div></div>
+<div id="admin" class="screen"><div class="header" style="background:#0b3d20;color:white"><div>Admin Dashboard</div><div onclick="showScreen('profile')">✕</div></div><div style="padding:15px">Users: 12,483 | Ads: 3,290 | Reported: 24</div></div>
+<script>
+  const categories = [{name:'Mobiles',icon:'📱'},{name:'Cars',icon:'🚗'},{name:'Bikes',icon:'🏍️'},{name:'Property',icon:'🏠'},{name:'Jobs',icon:'💼'},{name:'Electronics',icon:'💻'},{name:'Fashion',icon:'👗'},{name:'Furniture',icon:'🛋️'},{name:'Grocery',icon:'🛒'},{name:'Animals',
